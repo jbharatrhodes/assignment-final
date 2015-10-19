@@ -23,7 +23,7 @@ router.get('/', function(req, res, next) {
 });
 
 /* GET user registration page */
-router.get('/postads', function(req, res, next) {
+router.get('/', function(req, res, next) {
   var vm = {
     title: 'Post your ad',
      firstname: req.user ? req.user.firstname : null
@@ -33,24 +33,20 @@ router.get('/postads', function(req, res, next) {
 
 
 /* GET user login page */
-router.post('/postads', function(req, res, next) {
+router.post('/', function(req, res, next) {
  adService.addAd(req.body, function (err) {
  if(err) {    
   var vm = {
     title: 'Added',
     error: err
   };
-  //return res.render('lists/index', vm);
-  res.send('I should get smethinm');
+  return res.render('lists/index', vm);
+  //res.send('I should get smethinm');
   }
     //res.send('I am here');
-      res.redirect ('/thank'); 
+      res.redirect ('/lists/thank'); 
 });
 });
-
-
-
-
 /* GET user registration page */
 router.get('/thank', function(req, res, next) {
   var vm = {
