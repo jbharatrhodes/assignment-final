@@ -5,7 +5,13 @@ exports.addUser = function (user, next) {
        
        firstname: user.firstname,
        lastname: user.lastname,
+<<<<<<< HEAD
        
+=======
+       address: user.address,
+       postcode: user.postcode,
+       telephone: user.telephone,
+>>>>>>> b885d887e1ecde26b2f0af548719a72b441f64b9
        email: user.email.toLowerCase(),
        password: user.password
     });
@@ -18,10 +24,13 @@ exports.addUser = function (user, next) {
     
     });
 };
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> b885d887e1ecde26b2f0af548719a72b441f64b9
 //Check if user is already registered
 exports.findUser = function (email, next) 
 {

@@ -7,15 +7,21 @@ var bodyParser = require('body-parser');
 var mongoose = require ('mongoose');
 var passport = require('passport');
 var expressSession = require('express-session');
+<<<<<<< HEAD
 var connectMongo = require('connect-mongo');
+=======
+>>>>>>> b885d887e1ecde26b2f0af548719a72b441f64b9
 
 var config = require ('./config');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var lists = require('./routes/lists');
+<<<<<<< HEAD
 //var classified = require('./routes/classified');
 
 var MongoStore = connectMongo(expressSession);
+=======
+>>>>>>> b885d887e1ecde26b2f0af548719a72b441f64b9
 
 var passportConfig = require('./auth/passport-config');
 var restrict = require('./auth/restrict');
@@ -24,7 +30,10 @@ passportConfig();
 mongoose.connect(config.mongoUri);
 
 var app = express();
+<<<<<<< HEAD
 app.set('production', process.env.NODE_ENV == 'production');
+=======
+>>>>>>> b885d887e1ecde26b2f0af548719a72b441f64b9
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -41,11 +50,15 @@ app.use(expressSession(
     {
         secret: 'classified ads',
         saveUninitialized: false,
+<<<<<<< HEAD
         resave: false,
         store: new MongoStore({
           
           mongooseConnection: mongoose.connection
         })  
+=======
+        resave: false
+>>>>>>> b885d887e1ecde26b2f0af548719a72b441f64b9
     }
 ));
 
@@ -55,7 +68,10 @@ app.use(passport.session());
 app.use('/', routes);
 app.use('/users', users);
 app.use('/lists', lists);
+<<<<<<< HEAD
 //app.use('/classified', classified);
+=======
+>>>>>>> b885d887e1ecde26b2f0af548719a72b441f64b9
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
