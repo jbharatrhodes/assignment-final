@@ -2,12 +2,15 @@ var express = require('express');
 var router = express.Router();
 var passport= require('passport');
 var userService = require('../services/user-service');
+var config = require('../config');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('I should get smethinm');
+  var vm = {
+    title: 'Create an account'
+  };
+  res.render('users/register', vm);
 });
-
 /* GET user registration page */
 router.get('/register', function(req, res, next) {
   var vm = {
@@ -31,23 +34,40 @@ router.post('/register', function(req, res, next) {
   }
   req.login(req.body, function (err) 
   {
-      res.redirect ('/lists'); 
+      res.redirect ('/lists/postads'); 
       
   });
  
 });
 });
 
-router.post('/login', passport.authenticate('local'), function(req,res,next)
-{
-res.redirect('/lists');
-
+router.get('/login', function(req, res, next) {
+  var vm = {
+    title: 'Login'
+  };
+  res.render('login', vm);
 });
 
-router.get('/logout', function (req, res, next)
-{
-    req.logout();
-    req.redirect('/');
+
+//checks if login is successful, then redirect to post ads else, return back to home page
+router.post('/login', 
+function (req, res, next) {
+  if(req.body.remember)
+  {
+    req.session.cookie.maxAge = config.cookieMaxAge;
+  }
+  next();
+  
+},
+ passport.authenticate('local', {
+    failureRedirect: '/', 
+    successRedirect: '/lists/postads'
+  }));
+
+router.get('/logout', function(req, res, next) {
+  req.logout();
+  req.session.destroy();
+  res.redirect('/');
 });
 
 module.exports = router;

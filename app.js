@@ -7,11 +7,15 @@ var bodyParser = require('body-parser');
 var mongoose = require ('mongoose');
 var passport = require('passport');
 var expressSession = require('express-session');
+var connectMongo = require('connect-mongo');
 
 var config = require ('./config');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var lists = require('./routes/lists');
+//var classified = require('./routes/classified');
+
+var MongoStore = connectMongo(expressSession);
 
 var passportConfig = require('./auth/passport-config');
 var restrict = require('./auth/restrict');
@@ -36,7 +40,11 @@ app.use(expressSession(
     {
         secret: 'classified ads',
         saveUninitialized: false,
-        resave: false
+        resave: false,
+        store: new MongoStore({
+          
+          mongooseConnection: mongoose.connection
+        })  
     }
 ));
 
@@ -46,6 +54,7 @@ app.use(passport.session());
 app.use('/', routes);
 app.use('/users', users);
 app.use('/lists', lists);
+//app.use('/classified', classified);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -5,9 +5,6 @@ var userSchema = new Schema({
     
     firstname: String,
     lastname: String,
-    address: {type:String, required:'Please enter the address'},
-    postcode: {type:String, required:'Please enter the postcode'},
-    telephone: {type:Number, required:'Please enter the telephone'},
     email: {type:String, required:'Please enter the email'},
     password: String,
     created: {type: Date, default: Date.now}

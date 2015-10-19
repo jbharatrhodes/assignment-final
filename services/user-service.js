@@ -5,9 +5,7 @@ exports.addUser = function (user, next) {
        
        firstname: user.firstname,
        lastname: user.lastname,
-       address: user.address,
-       postcode: user.postcode,
-       telephone: user.telephone,
+       
        email: user.email.toLowerCase(),
        password: user.password
     });
@@ -20,6 +18,10 @@ exports.addUser = function (user, next) {
     
     });
 };
+
+
+
+
 //Check if user is already registered
 exports.findUser = function (email, next) 
 {

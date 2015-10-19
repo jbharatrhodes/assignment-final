@@ -1,0 +1,38 @@
+
+<!-----
+<div class="widget">
+  <strong ng-show="!vm.ad">Loading...</strong>
+  <ul>
+    <li ng-repeat="ads in vm.ad | orderBy: 'adtitle'">
+      <a ng-href="#/detail/{{ads.id}}">
+        <strong ng-bind="ads.adtitle"></strong>
+      </a>
+    </li>
+  </ul>
+</div>
+
+--->
+
+<table class="table">
+      <thead>
+        <tr>
+          <th>Ad Title</th>         
+          <th>Address</th>
+          <th>Postcode</th>
+          <th>Description</th>
+          <th>Telephone</th>
+                    <th>Posted By</th>	
+        </tr>
+      </thead>
+      <tbody>
+       
+        <tr ng-repeat="ads in vm.ad | orderBy: 'adtitle'">
+        	  <td>{{ads.adtitle}}</td>	
+          <td>{{ads.address}}</td>
+          <td>{{ads.postcode}}</td>
+          <td>{{ads.descp}}</td>
+          <td>{{ads.telephone}}</td>
+          <td>{{ads.firstname}}</td>
+        </tr>
+      </tbody>
+    </table>

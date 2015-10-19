@@ -1,9 +1,8 @@
 <div class="textwidget margin-top-30">
-											<p>No matter what you're craving, <em><strong>Restaurant to Room</strong></em> has you covered. Our fast and friendly delivery service brings you hot, fresh food, from a diverse choice of local restaurants.</p>
-											<p>Simply create an account to get started, select items from a menu, and we'll have food delivered directly to your room, within an hour, or your meal is free. The only difficult part is choosing.  (Sorry, we can't help you with that.)</p>
-										</div>
+												</div>
+												<h1> Login to post your ad </h1></h1>
 										<div class="widget">
-											<form name="login-form" id="login-form" method="post" action="/login/">
+											<form name="login-form" id="login-form" method="post" action="/users/login">
 												<div class="form-group">
 													<label for="email">Email</label>
 													<input type="text" id="email" name="email" />
@@ -12,11 +11,19 @@
 													<label for="password">Password</label>
 													<input type="password" id="password" name="password" />
 												</div>
+													<div class="form-group">
+													<label for="remember">Remember Password</label>
+													<input type="checkbox" id="remember" name="remember" />
+												</div>
+												
 												<div class="form-submit">
 													<input type="submit" value="Log in" />
 													<div class="margin-top-30">
-														or <a href="/users/create">Create an account</a>
+														or <a href="/users/register">Create an account</a>
 													</div>
-												</div>												
+												</div>	
+												<span > {{#if error}} -{{error}} {{/if}}</span>
 											</form>
 										</div>
+										
+										
